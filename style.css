@@ -42,3 +42,26 @@ footer {
   padding: 10px;
   background: #eee;
 }
+.social-links {
+  list-style: none;
+  padding: 0;
+}
+
+.social-links li {
+  margin: 10px 0;
+}
+
+.social-links a {
+  font-size: 18px;
+  color: #2575fc;
+  text-decoration: none;
+}
+
+.social-links a i {
+  margin-right: 8px;
+  font-size: 20px;
+}
+
+.social-links a:hover {
+  color: #6a11cb;
+}
