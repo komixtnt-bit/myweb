@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Визитка Камиля - IT</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     * {
       margin: 0;
@@ -20,20 +20,17 @@
       min-height: 100vh;
       display: flex;
       justify-content: center;
-      align-items: stretch; /* Изменено с center на stretch */
-      padding: 0; /* Убрали отступы на мобильных */
+      align-items: center;
+      padding: 20px;
     }
     
     .container {
       max-width: 800px;
-      width: 100%; /* Добавлено для растягивания на всю ширину */
       background: rgba(255, 255, 255, 0.95);
       border-radius: 20px;
       box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
       overflow: hidden;
-      margin: 0; /* Убрали отступы на мобильных */
-      display: flex;
-      flex-direction: column;
+      margin: 20px;
     }
     
     header {
@@ -66,10 +63,6 @@
     
     main {
       padding: 30px;
-      flex-grow: 1; /* Чтобы main занимал все доступное пространство */
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
     }
     
     section {
@@ -130,26 +123,7 @@
       font-size: 1rem;
     }
     
-    /* Медиа-запрос для мобильных устройств */
-    @media (max-width: 768px) {
-      body {
-        padding: 0;
-        align-items: stretch;
-      }
-      
-      .container {
-        width: 100%;
-        height: 100vh; /* Занимает всю высоту viewport */
-        max-width: none;
-        border-radius: 0; /* Убираем скругления углов */
-        box-shadow: none; /* Убираем тень */
-        margin: 0;
-      }
-      
-      header {
-        padding: 30px 15px;
-      }
-      
+    @media (max-width: 600px) {
       .avatar {
         width: 120px;
         height: 120px;
@@ -159,26 +133,9 @@
         font-size: 2rem;
       }
       
-      header p {
-        font-size: 1rem;
-      }
-      
-      main {
-        padding: 20px;
-      }
-      
-      h2 {
-        font-size: 1.5rem;
-      }
-      
-      p {
-        font-size: 1rem;
-      }
-      
       .social-links {
         flex-direction: column;
-        align-items: stretch;
-        gap: 10px;
+        align-items: center;
       }
       
       .social-links li {
@@ -187,48 +144,6 @@
       
       .social-links li a {
         justify-content: center;
-        padding: 15px;
-      }
-    }
-    
-    /* Дополнительные стили для очень маленьких устройств */
-    @media (max-width: 480px) {
-      header {
-        padding: 20px 10px;
-      }
-      
-      .avatar {
-        width: 100px;
-        height: 100px;
-      }
-      
-      h1 {
-        font-size: 1.7rem;
-      }
-      
-      main {
-        padding: 15px;
-      }
-      
-      h2 {
-        font-size: 1.3rem;
-      }
-    }
-    
-    /* Для landscape ориентации на мобильных */
-    @media (max-height: 500px) and (orientation: landscape) {
-      .container {
-        height: auto;
-        min-height: 100vh;
-      }
-      
-      header {
-        padding: 20px 15px;
-      }
-      
-      .avatar {
-        width: 80px;
-        height: 80px;
       }
     }
   </style>
@@ -244,13 +159,13 @@
     <main>
       <section>
         <h2>Обо мне</h2>
-        <p>Опытный специалист широкого профиля.</p>
-        <p>Я увлекаюсь веб-разработкой, делаю не большие проекты и хочу расти как специалист.</p>
-        <p>Более 10 лет успешно решаю любые задачи в области технической поддержки офисных сотрудников и ИТ-инфраструктуры компаний. Оказываю услуги:</p>
-        <p>Администрирование сетей и обслуживание серверов,</p>
-        <p>Настройка и ремонт ПК, ноутбуков и мобильных устройств,</p>
-        <p>Копирайтинг, создание и поддержка веб-сайтов, контент-менеджмент.</p>
-        <p>Обладаю глубокими техническими компетенциями и стремлюсь быстро и качественно решать задачи любого уровня сложности.</p>
+        <p> Опытный специалист широкого профиля.</p>
+        <p> Я увлекаюсь веб-разработкой, делаю не большие проекты и хочу расти как специалист.</p>
+        <p> Более 10 лет успешно решаю любые задачи в области технической поддержки офисных сотрудников и ИТ-инфраструктуры компаний. Оказываю услуги:</p>
+        <p> Администрирование сетей и обслуживание серверов, </p>
+        <p> Настройка и ремонт ПК, ноутбуков и мобильных устройств,</p>
+        <p> Копирайтинг, создание и поддержка веб-сайтов, контент-менеджмент.</p>
+        <p> Обладаю глубокими техническими компетенциями и стремлюсь быстро и качественно решать задачи любого уровня сложности.</p>
       </section>
 
       <section>
@@ -269,22 +184,3 @@
   </div>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
