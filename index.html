@@ -3,34 +3,185 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Моя визитка</title>
+  <title>Визитка Камиля - Фронтенд-разработчик</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background: linear-gradient(135deg, #6e8efb, #a777e3);
+      color: #333;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    
+    .container {
+      max-width: 800px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      margin: 20px;
+    }
+    
+    header {
+      text-align: center;
+      padding: 40px 20px;
+      background: linear-gradient(120deg, #6a11cb 0%, #2575fc 100%);
+      color: white;
+    }
+    
+    .avatar {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      margin-bottom: 20px;
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+    
+    header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+    
+    main {
+      padding: 30px;
+    }
+    
+    section {
+      margin-bottom: 30px;
+    }
+    
+    h2 {
+      color: #6a11cb;
+      margin-bottom: 15px;
+      padding-bottom: 5px;
+      border-bottom: 2px solid #eee;
+      font-size: 1.8rem;
+    }
+    
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+      color: #555;
+    }
+    
+    .social-links {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    
+    .social-links li a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: #6a11cb;
+      font-weight: 600;
+      padding: 12px 20px;
+      background: #f0f4ff;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+    }
+    
+    .social-links li a:hover {
+      background: #6a11cb;
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(106, 17, 203, 0.4);
+    }
+    
+    .social-links i {
+      margin-right: 8px;
+      font-size: 1.2rem;
+    }
+    
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #f8f9fa;
+      color: #777;
+      font-size: 1rem;
+    }
+    
+    @media (max-width: 600px) {
+      .avatar {
+        width: 120px;
+        height: 120px;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+      
+      .social-links {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .social-links li {
+        width: 100%;
+      }
+      
+      .social-links li a {
+        justify-content: center;
+      }
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <img src="avatar.jpg" alt="Моё фото" class="avatar">
-    <h1>Привет! Я Камиль</h1>
-    <p>Фронтенд-разработчик • Люблю учиться новому</p>
-  </header>
+  <div class="container">
+    <header>
+      <!-- Замените ссылку на реальное фото -->
+      <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&q=80" alt="Фото Камиля" class="avatar">
+      <h1>Привет! Я Камиль</h1>
+      <p>Фронтенд-разработчик • Люблю учиться новому</p>
+    </header>
 
-  <main>
-    <section>
-      <h2>Обо мне</h2>
-      <p>Я увлекаюсь веб-разработкой, делаю маленькие проекты и хочу расти как специалист.</p>
-    </section>
+    <main>
+      <section>
+        <h2>Обо мне</h2>
+        <p>Я увлекаюсь веб-разработкой, делаю маленькие проекты и хочу расти как специалист. Владею HTML, CSS, JavaScript и React.
+Markup
+
+
+Постоянно изучаю новые технологии и frameworks.</p>
+        <p>В свободное время люблю читать IT-блоги, участвовать в хакатонах и contributing в open-source проекты.</p>
+      </section>
 
-<section>
-  <h2>Контакты</h2>
-  <ul class="social-links">
-    <li><a href="https://github.com/username"><i class="fab fa-github"></i> GitHub</a></li>
-    <li><a href="https://t.me/username"><i class="fab fa-telegram"></i> Telegram</a></li>
-    <li><a href="mailto:email@example.com"><i class="fas fa-envelope"></i> Email</a></li>
-  </ul>
-</section>
-  </main>
+      <section>
+        <h2>Контакты</h2>
+        <ul class="social-links">
+          <!-- Замените ссылки на свои реальные профили -->
+          <li><a href="https://github.com/KamilExample" target="_blank"><i class="fab fa-github"></i> GitHub</a></li>
+          <li><a href="https://t.me/KamilExample" target="_blank"><i class="fab fa-telegram"></i> Telegram</a></li>
+          <li><a href="mailto:kamil.frontend@example.com"><i class="fas fa-envelope"></i> Email</a></li>
+          <li><a href="https://linkedin.com/in/KamilExample" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+        </ul>
+      </section>
+    </main>
 
-  <footer>
-    <p>© 2025 Иван Иванов</p>
-  </footer>
+    <footer>
+      <p>© 2025 Камиль. Фронтенд-разработчик</p>
+    </footer>
+  </div>
 </body>
 </html>
