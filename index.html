@@ -14,7 +14,7 @@
     }
     
     body {
-      background: linear-gradient(135deg, #f5f0ff, #e6f0ff);
+      background: linear-gradient(135deg, #f5f0ff 0%, #e6f0ff 100%);
       color: #5a5a5a;
       line-height: 1.6;
       min-height: 100vh;
@@ -28,7 +28,7 @@
       max-width: 800px;
       background: rgba(255, 255, 255, 0.95);
       border-radius: 20px;
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 10px 25px rgba(143, 124, 224, 0.15);
       overflow: hidden;
       margin: 20px;
     }
@@ -36,8 +36,19 @@
     header {
       text-align: center;
       padding: 40px 20px;
-      background: linear-gradient(120deg, #f5f0ff 0%, #e6f0ff 100%);
-      color: white;
+      background: linear-gradient(120deg, #d9e6ff 0%, #f0e6ff 100%);
+      color: #6d6d6d;
+      position: relative;
+    }
+    
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, #a1c7ff, #c2a1ff, #ffb1e6);
     }
     
     .avatar {
@@ -45,19 +56,22 @@
       height: 150px;
       border-radius: 50%;
       object-fit: cover;
-      border: 5px solid rgba(255, 255, 255, 0.3);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      border: 5px solid rgba(255, 255, 255, 0.7);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
       margin-bottom: 20px;
     }
     
     h1 {
       font-size: 2.5rem;
       margin-bottom: 10px;
+      color: #7b7bde;
+      font-weight: 600;
     }
     
     header p {
       font-size: 1.2rem;
-      opacity: 0.9;
+      color: #8884d6;
+      font-weight: 500;
     }
     
     main {
@@ -66,20 +80,25 @@
     
     section {
       margin-bottom: 30px;
+      padding: 25px;
+      border-radius: 15px;
+      background: #faf9ff;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     }
     
     h2 {
-      color: #6a11cb;
+      color: #8884d6;
       margin-bottom: 15px;
-      padding-bottom: 5px;
-      border-bottom: 2px solid #eee;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #e6e3ff;
       font-size: 1.8rem;
     }
     
     p {
       font-size: 1.1rem;
       margin-bottom: 15px;
-      color: #555;
+      color: #6d6d6d;
+      line-height: 1.7;
     }
     
     .social-links {
@@ -87,26 +106,27 @@
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 20px;
+      gap: 15px;
     }
     
     .social-links li a {
       display: flex;
       align-items: center;
       text-decoration: none;
-      color: #6a11cb;
+      color: #8884d6;
       font-weight: 600;
-      padding: 12px 20px;
-      background: #f0f4ff;
+      padding: 12px 25px;
+      background: #f0edff;
       border-radius: 50px;
       transition: all 0.3s ease;
+      border: 1px solid #e6e3ff;
     }
     
     .social-links li a:hover {
-      background: #6a11cb;
+      background: #8884d6;
       color: white;
       transform: translateY(-3px);
-      box-shadow: 0 5px 15px rgba(106, 17, 203, 0.4);
+      box-shadow: 0 5px 15px rgba(136, 132, 214, 0.3);
     }
     
     .social-links i {
@@ -117,8 +137,8 @@
     footer {
       text-align: center;
       padding: 20px;
-      background: #f8f9fa;
-      color: #777;
+      background: #f5f3ff;
+      color: #9d9ac5;
       font-size: 1rem;
     }
     
@@ -144,13 +164,20 @@
       .social-links li a {
         justify-content: center;
       }
+      
+      main {
+        padding: 20px;
+      }
+      
+      section {
+        padding: 20px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
     <header>
-      <!-- Замените ссылку на реальное фото -->
       <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&q=80" alt="Фото Камиля" class="avatar">
       <h1>Привет! Я Камиль</h1>
       <p>Фронтенд-разработчик • Люблю учиться новому</p>
@@ -158,33 +185,3 @@
 
     <main>
       <section>
-        <h2>Обо мне</h2>
-        <p>Я увлекаюсь веб-разработкой, делаю маленькие проекты и хочу расти как специалист. Владею HTML, CSS, JavaScript и React.
-Markup
-Постоянно изучаю новые технологии и frameworks.</p>
-        <p>В свободное время люблю читать IT-блоги, участвовать в хакатонах и contributing в open-source проекты.</p>
-      </section>
-
-      <section>
-        <h2>Контакты</h2>
-        <ul class="social-links">
-          <!-- Замените ссылки на свои реальные профили -->
-          <li><a href="https://github.com/KamilExample" target="_blank"><i class="fab fa-github"></i> GitHub</a></li>
-          <li><a href="https://t.me/KamilExample" target="_blank"><i class="fab fa-telegram"></i> Telegram</a></li>
-          <li><a href="mailto:kamil.frontend@example.com"><i class="fas fa-envelope"></i> Email</a></li>
-        </ul>
-      </section>
-    </main>
-
-    <footer>
-      <p>© 2025 Камиль. Фронтенд-разработчик</p>
-    </footer>
-  </div>
-</body>
-</html>
-
-
-
-
-
-
