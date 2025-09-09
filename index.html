@@ -1,3 +1,4 @@
+html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -127,6 +128,21 @@
       background: #f8f9fa;
       color: #777;
       font-size: 0.9rem;
+    }
+    
+    /* Скрыть полосу прокрутки для всех элементов */
+    html, body, .container {
+      scrollbar-width: none; /* Для Firefox */
+      -ms-overflow-style: none; /* Для IE и Edge */
+    }
+
+    /* Для WebKit браузеров (Chrome, Safari, Opera) */
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar,
+    .container::-webkit-scrollbar {
+      display: none;
+      width: 0;
+      height: 0;
     }
     
     /* Мобильная адаптация */
@@ -265,5 +281,3 @@
   </div>
 </body>
 </html>
-
-
