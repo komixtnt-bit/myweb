@@ -42,14 +42,11 @@
     .vb-k7m__portrait-frame:before { top:-5px; left:-5px; border-width:1px 0 0 1px; }
     .vb-k7m__portrait-frame:after { right:-5px; bottom:-5px; border-width:0 1px 1px 0; }
     .vb-k7m__portrait { display:block; width:100%; aspect-ratio:4/5; object-fit:cover; filter:saturate(.75) contrast(1.04); background:#182334; }
-    .vb-k7m__pixel-canvas { position:absolute; inset:12px; width:calc(100% - 24px); height:calc(100% - 55px); pointer-events:none; opacity:0; transition:opacity .12s linear; image-rendering:pixelated; }
-    .vb-k7m__portrait-frame.vb-k7m__portrait-frame--pixel-active .vb-k7m__pixel-canvas { opacity:1; }
-    .vb-k7m__portrait-frame.vb-k7m__portrait-frame--pixel-active .vb-k7m__portrait { opacity:0; }
     .vb-k7m__portrait-caption { display:flex; justify-content:space-between; gap:8px; padding:12px 2px 0; color:#b7c5d8; font:11px/1.4 var(--t-text-font); }
     .vb-k7m__scroll { position:absolute; bottom:22px; left:50%; transform:translateX(-50%); color:#8391a8; font:10px/1.4 var(--t-text-font); letter-spacing:.12em; text-transform:uppercase; }
     @media(max-width:760px) { .vb-k7m__shell,.vb-k7m__nav { padding-left:24px; padding-right:24px; } .vb-k7m__hero-inner { padding:64px 24px 82px; grid-template-columns:minmax(0,1fr) 210px; gap:34px; } .vb-k7m__title { font-size:clamp(40px,8vw,62px); } }
     @media(max-width:560px) { .vb-k7m__nav { padding-top:20px; padding-bottom:20px; } .vb-k7m__hero-inner { padding-top:48px; display:flex; flex-direction:column-reverse; align-items:stretch; gap:34px; } .vb-k7m__portrait-frame { width:min(215px,70%); margin:0 auto; } .vb-k7m__title { font-size:clamp(42px,12vw,60px); } .vb-k7m__scroll { display:none; } }
-    @media(prefers-reduced-motion:reduce) { .vb-k7m-hero:before,.vb-k7m-hero:after { animation:none; } .vb-k7m__portrait-frame { transition:none; } .vb-k7m__pixel-canvas { transition:none; } .vb-k7m-hero * { scroll-behavior:auto!important; } }
+    @media(prefers-reduced-motion:reduce) { .vb-k7m-hero:before,.vb-k7m-hero:after { animation:none; } .vb-k7m__portrait-frame { transition:none; } .vb-k7m-hero * { scroll-behavior:auto!important; } }
   </style>
   <nav class="vb-k7m__nav" aria-label="Навигация по странице">
     <span class="vb-k7m__brand">KAMIL<span style="color:#8cffcb">/</span>IT</span>
@@ -62,88 +59,9 @@
       <p class="vb-k7m__lead">Соединяю техническую поддержку, инфраструктуру и веб-разработку. Люблю разбираться в сложном и находить решения, которые действительно работают.</p>
       <div class="vb-k7m__hero-meta"><span class="vb-k7m__meta-line"></span><span>Поддержка · инфраструктура · веб</span></div>
     </div>
-    <div class="vb-k7m__portrait-frame"><img class="vb-k7m__portrait" src="https://static.tildacdn.com/tila3030-3731-4335-a565-333537383865/IMG_6472.jpg" alt="Камиль на фоне гор, IT-специалист"><canvas class="vb-k7m__pixel-canvas" aria-hidden="true"></canvas><div class="vb-k7m__portrait-caption"><span>Профиль специалиста</span><span>RU / IT</span></div></div>
+    <div class="vb-k7m__portrait-frame"><img class="vb-k7m__portrait" src="https://static.tildacdn.com/tila3030-3731-4335-a565-333537383865/IMG_6472.jpg" alt="Камиль на фоне гор, IT-специалист"><div class="vb-k7m__portrait-caption"><span>Профиль специалиста</span><span>RU / IT</span></div></div>
   </div>
   <span class="vb-k7m__scroll">Прокрутите вниз</span>
-  <script>
-    (function () {
-      var root = document.getElementById('vb-k7m-hero');
-      if (!root) return;
-      var frame = root.querySelector('.vb-k7m__portrait-frame');
-      var image = root.querySelector('.vb-k7m__portrait');
-      var canvas = root.querySelector('.vb-k7m__pixel-canvas');
-      if (!frame || !image || !canvas) return;
-      var context = canvas.getContext('2d');
-      if (!context) return;
-      var imageReady = false;
-      var pointer = { x: -1000, y: -1000 };
-      var radius = 58;
-      var blockSize = 7;
-      var resizeCanvas = function () {
-        var rect = image.getBoundingClientRect();
-        if (!rect.width || !rect.height) return;
-        var ratio = Math.min(window.devicePixelRatio || 1, 2);
-        canvas.width = Math.round(rect.width * ratio);
-        canvas.height = Math.round(rect.height * ratio);
-        canvas.style.width = rect.width + 'px';
-        canvas.style.height = rect.height + 'px';
-        canvas.style.left = '12px';
-        canvas.style.top = '12px';
-        canvas.style.inset = '12px auto auto 12px';
-        context.setTransform(ratio, 0, 0, ratio, 0, 0);
-        draw();
-      };
-      var draw = function () {
-        if (!imageReady) return;
-        var rect = image.getBoundingClientRect();
-        if (!rect.width || !rect.height) return;
-        context.clearRect(0, 0, rect.width, rect.height);
-        var left = Math.max(0, pointer.x - radius);
-        var top = Math.max(0, pointer.y - radius);
-        var right = Math.min(rect.width, pointer.x + radius);
-        var bottom = Math.min(rect.height, pointer.y + radius);
-        if (right <= left || bottom <= top) return;
-        var width = Math.max(1, Math.ceil((right - left) / blockSize));
-        var height = Math.max(1, Math.ceil((bottom - top) / blockSize));
-        var small = document.createElement('canvas');
-        small.width = width;
-        small.height = height;
-        var smallContext = small.getContext('2d');
-        if (!smallContext) return;
-        smallContext.imageSmoothingEnabled = true;
-        smallContext.drawImage(image, left, top, right - left, bottom - top, 0, 0, width, height);
-        context.imageSmoothingEnabled = false;
-        context.drawImage(small, 0, 0, width, height, left, top, right - left, bottom - top);
-        context.save();
-        context.globalCompositeOperation = 'destination-in';
-        var gradient = context.createRadialGradient(pointer.x, pointer.y, radius * .42, pointer.x, pointer.y, radius);
-        gradient.addColorStop(0, 'rgba(255,255,255,1)');
-        gradient.addColorStop(1, 'rgba(255,255,255,0)');
-        context.fillStyle = gradient;
-        context.fillRect(left, top, right - left, bottom - top);
-        context.restore();
-      };
-      var onMove = function (event) {
-        var rect = image.getBoundingClientRect();
-        pointer.x = event.clientX - rect.left;
-        pointer.y = event.clientY - rect.top;
-        frame.classList.add('vb-k7m__portrait-frame--pixel-active');
-        draw();
-      };
-      var onLeave = function () {
-        pointer.x = -1000;
-        pointer.y = -1000;
-        frame.classList.remove('vb-k7m__portrait-frame--pixel-active');
-        context.clearRect(0, 0, canvas.width, canvas.height);
-      };
-      var onImageReady = function () { imageReady = true; resizeCanvas(); };
-      frame.addEventListener('pointermove', onMove);
-      frame.addEventListener('pointerleave', onLeave);
-      if (image.complete && image.naturalWidth) onImageReady();
-      else image.addEventListener('load', onImageReady, { once: true });
-      window.addEventListener('resize', resizeCanvas);
-    })();
-  </script>
 </section>
 </body>
 </html>
