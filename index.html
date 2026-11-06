@@ -1,296 +1,137 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Визитка Камиля - IT</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<section class="vb-k7m vb-k7m-hero" id="vb-k7m-hero" data-section-name="Первый экран" data-vibeblock-unique-section="yes" aria-labelledby="vb-k7m-title">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    
-    body {
-      background: linear-gradient(135deg, #6e8efb, #a777e3);
-      color: #333;
-      line-height: 1.5;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: stretch;
-      padding: 0;
-    }
-    
-    .container {
-      width: 100%;
-      max-width: 800px;
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 0;
-      box-shadow: none;
-      overflow: auto;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-    
-    header {
-      text-align: center;
-      padding: 20px 15px;
-      background: linear-gradient(120deg, #6a11cb 0%, #2575fc 100%);
-      color: white;
-    }
-    
-    .avatar {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid rgba(255, 255, 255, 0.3);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-      margin-bottom: 15px;
-    }
-    
-    h1 {
-      font-size: 1.8rem;
-      margin-bottom: 8px;
-    }
-    
-    header p {
-      font-size: 1rem;
-      color: #FFFFFF;
-      opacity: 0.9;
-    }
-    
-    main {
-      padding: 20px;
-      flex-grow: 1;
-    }
-    
-    section {
-      margin-bottom: 20px;
-    }
-    
-    h2 {
-      color: #6a11cb;
-      margin-bottom: 12px;
-      padding-bottom: 3px;
-      border-bottom: 2px solid #eee;
-      font-size: 1.4rem;
-    }
-    
-    p {
-      font-size: 0.95rem;
-      margin-bottom: 12px;
-      color: #555;
-      line-height: 1.4;
-    }
-    
-    .social-links {
-      list-style: none;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 15px;
-    }
-    
-    .social-links li a {
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-      color: #6a11cb;
-      font-weight: 600;
-      padding: 10px 18px;
-      background: #f0f4ff;
-      border-radius: 50px;
-      transition: all 0.3s ease;
-      font-size: 0.9rem;
-    }
-    
-    .social-links li a:hover {
-      background: #6a11cb;
-      color: white;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(106, 17, 203, 0.4);
-    }
-    
-    .social-links i {
-      margin-right: 6px;
-      font-size: 1.1rem;
-    }
-    
-    footer {
-      text-align: center;
-      padding: 12px;
-      background: #f8f9fa;
-      color: #777;
-      font-size: 0.85rem;
-    }
-    
-    html, body, .container {
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-    }
-
-    html::-webkit-scrollbar,
-    body::-webkit-scrollbar,
-    .container::-webkit-scrollbar {
-      display: none;
-      width: 0;
-      height: 0;
-    }
-    
-    @media (min-width: 769px) {
-      body {
-        padding: 15px;
-        align-items: center;
-      }
-      
-      .container {
-        border-radius: 15px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-        min-height: auto;
-        max-height: 95vh;
-      }
-    }
-    
-    @media (max-width: 768px) {
-      header {
-        padding: 18px 12px;
-      }
-      
-      .avatar {
-        width: 90px;
-        height: 90px;
-      }
-      
-      h1 {
-        font-size: 1.6rem;
-      }
-      
-      main {
-        padding: 15px;
-      }
-      
-      h2 {
-        font-size: 1.3rem;
-      }
-      
-      .social-links {
-        flex-direction: column;
-        gap: 8px;
-      }
-      
-      .social-links li {
-        width: 100%;
-      }
-      
-      .social-links li a {
-        justify-content: center;
-        padding: 8px 15px;
-      }
-    }
-    
-    @media (max-width: 480px) {
-      header {
-        padding: 15px 10px;
-      }
-      
-      .avatar {
-        width: 80px;
-        height: 80px;
-      }
-      
-      h1 {
-        font-size: 1.4rem;
-      }
-      
-      main {
-        padding: 12px;
-      }
-      
-      h2 {
-        font-size: 1.2rem;
-      }
-      
-      p {
-        font-size: 0.9rem;
-      }
-      
-      .social-links li a {
-        font-size: 0.85rem;
-        padding: 8px 12px;
-      }
-    }
-    
-    @media (max-height: 500px) and (orientation: landscape) {
-      header {
-        padding: 12px 8px;
-      }
-      
-      .avatar {
-        width: 70px;
-        height: 70px;
-        margin-bottom: 8px;
-      }
-      
-      h1 {
-        font-size: 1.2rem;
-        margin-bottom: 3px;
-      }
-      
-      main {
-        padding: 10px;
-      }
-      
-      section {
-        margin-bottom: 15px;
-      }
-    }
-    .compact-text p {
-      margin-bottom: 8px;
-    }
+    .vb-k7m,
+    .vb-k7m * { box-sizing: border-box; }
+    .vb-k7m input,
+    .vb-k7m textarea,
+    .vb-k7m select { font: inherit; }
+    .vb-k7m { --vb-bg:#090d18; --vb-panel:#101827; --vb-line:rgba(177,196,227,.16); --vb-ink:#f4f7ff; --vb-muted:#a6b2c7; --vb-accent:#8cffcb; width:100%; color:var(--vb-ink); background:var(--vb-bg); font-family:var(--t-text-font); }
+    .vb-k7m__title,.vb-k7m__lead,.vb-k7m__eyebrow,.vb-k7m__hero-meta,.vb-k7m__portrait-caption,.vb-k7m__availability,.vb-k7m__scroll { font-family:var(--t-text-font); }
+    .vb-k7m__title,.vb-k7m__brand { font-family:var(--t-headline-font); }
+    .vb-k7m__shell { width:min(1120px,100%); margin:0 auto; padding:0 42px; }
+    .vb-k7m-hero { min-height:100svh; position:relative; isolation:isolate; overflow:hidden; display:flex; flex-direction:column; background:radial-gradient(ellipse at 72% 38%,rgba(23,82,98,.32),transparent 43%),radial-gradient(ellipse at 12% 90%,rgba(30,52,105,.24),transparent 38%),#090d18; }
+    .vb-k7m-hero:before { content:""; position:absolute; z-index:-1; inset:0; pointer-events:none; opacity:.2; background-image:linear-gradient(rgba(193,215,239,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(193,215,239,.12) 1px,transparent 1px); background-size:58px 58px; mask-image:linear-gradient(to bottom,black,transparent 90%); animation:vb-k7m-grid-drift 24s linear infinite; }
+    .vb-k7m-hero:after { content:""; position:absolute; z-index:-1; width:min(60vw,720px); aspect-ratio:1; right:-12%; top:8%; border:1px solid rgba(140,255,203,.11); border-radius:50%; box-shadow:0 0 0 48px rgba(140,255,203,.025),0 0 0 96px rgba(140,255,203,.018),inset 0 0 100px rgba(36,146,148,.08); pointer-events:none; animation:vb-k7m-orbit-glow 9s ease-in-out infinite alternate; }
+    .vb-k7m-hero .vb-k7m__nav:after { content:""; position:absolute; left:0; right:0; bottom:-1px; height:1px; background:linear-gradient(90deg,transparent,rgba(140,255,203,.55),transparent); opacity:.55; }
+    @keyframes vb-k7m-grid-drift { from { background-position:0 0,0 0; } to { background-position:58px 58px,58px 58px; } }
+    @keyframes vb-k7m-orbit-glow { from { transform:translate3d(0,0,0) scale(.97); opacity:.55; } to { transform:translate3d(-18px,16px,0) scale(1.03); opacity:1; } }
+    .vb-k7m__nav { position:relative; z-index:1; width:min(1120px,100%); margin:0 auto; padding:26px 42px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--vb-line); }
+    .vb-k7m__brand { font:700 15px/1 var(--t-headline-font); letter-spacing:.06em; color:var(--vb-ink); }
+    .vb-k7m__availability { display:flex; align-items:center; gap:9px; color:#c5d4e5; font-size:12px; }
+    .vb-k7m__dot { width:7px; height:7px; border-radius:50%; background:var(--vb-accent); box-shadow:0 0 12px rgba(140,255,203,.8); }
+    .vb-k7m__hero-inner { position:relative; z-index:1; width:min(1120px,100%); margin:auto; padding:clamp(48px,9vh,96px) 42px; display:grid; grid-template-columns:minmax(0,1fr) 290px; align-items:center; gap:clamp(42px,8vw,110px); }
+    .vb-k7m__eyebrow { margin:0 0 20px; color:var(--vb-accent); font:600 12px/1.4 var(--t-text-font); letter-spacing:.13em; text-transform:uppercase; }
+    .vb-k7m__title { max-width:700px; margin:0; font:650 clamp(42px,7vw,82px)/.99 var(--t-headline-font); letter-spacing:-.045em; text-wrap:balance; }
+    .vb-k7m__title span { color:var(--vb-accent); }
+    .vb-k7m__lead { max-width:530px; margin:24px 0 0; color:#c0cadd; font:400 clamp(16px,1.7vw,19px)/1.65 var(--t-text-font); }
+    .vb-k7m__hero-meta { display:flex; align-items:center; gap:14px; margin-top:34px; color:var(--vb-muted); font:500 12px/1.5 var(--t-text-font); }
+    .vb-k7m__meta-line { width:32px; height:1px; background:var(--vb-accent); }
+    .vb-k7m__portrait-frame { position:relative; padding:12px; border:1px solid rgba(140,255,203,.38); background:#111d2a; box-shadow:14px 14px 0 rgba(140,255,203,.08),0 0 38px rgba(59,213,168,.1); transform:rotate(2deg); transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s ease; }
+    .vb-k7m__portrait-frame:hover { transform:rotate(0) translateY(-5px); box-shadow:18px 20px 0 rgba(140,255,203,.09),0 0 54px rgba(59,213,168,.19); }
+    .vb-k7m__portrait-frame:before,.vb-k7m__portrait-frame:after { content:""; position:absolute; width:24px; height:24px; pointer-events:none; border-color:var(--vb-accent); border-style:solid; opacity:.8; }
+    .vb-k7m__portrait-frame:before { top:-5px; left:-5px; border-width:1px 0 0 1px; }
+    .vb-k7m__portrait-frame:after { right:-5px; bottom:-5px; border-width:0 1px 1px 0; }
+    .vb-k7m__portrait { display:block; width:100%; aspect-ratio:4/5; object-fit:cover; filter:saturate(.75) contrast(1.04); background:#182334; }
+    .vb-k7m__pixel-canvas { position:absolute; inset:12px; width:calc(100% - 24px); height:calc(100% - 55px); pointer-events:none; opacity:0; transition:opacity .12s linear; image-rendering:pixelated; }
+    .vb-k7m__portrait-frame.vb-k7m__portrait-frame--pixel-active .vb-k7m__pixel-canvas { opacity:1; }
+    .vb-k7m__portrait-frame.vb-k7m__portrait-frame--pixel-active .vb-k7m__portrait { opacity:0; }
+    .vb-k7m__portrait-caption { display:flex; justify-content:space-between; gap:8px; padding:12px 2px 0; color:#b7c5d8; font:11px/1.4 var(--t-text-font); }
+    .vb-k7m__scroll { position:absolute; bottom:22px; left:50%; transform:translateX(-50%); color:#8391a8; font:10px/1.4 var(--t-text-font); letter-spacing:.12em; text-transform:uppercase; }
+    @media(max-width:760px) { .vb-k7m__shell,.vb-k7m__nav { padding-left:24px; padding-right:24px; } .vb-k7m__hero-inner { padding:64px 24px 82px; grid-template-columns:minmax(0,1fr) 210px; gap:34px; } .vb-k7m__title { font-size:clamp(40px,8vw,62px); } }
+    @media(max-width:560px) { .vb-k7m__nav { padding-top:20px; padding-bottom:20px; } .vb-k7m__hero-inner { padding-top:48px; display:flex; flex-direction:column-reverse; align-items:stretch; gap:34px; } .vb-k7m__portrait-frame { width:min(215px,70%); margin:0 auto; } .vb-k7m__title { font-size:clamp(42px,12vw,60px); } .vb-k7m__scroll { display:none; } }
+    @media(prefers-reduced-motion:reduce) { .vb-k7m-hero:before,.vb-k7m-hero:after { animation:none; } .vb-k7m__portrait-frame { transition:none; } .vb-k7m__pixel-canvas { transition:none; } .vb-k7m-hero * { scroll-behavior:auto!important; } }
   </style>
-</head>
-<body>
-  <div class="container">
-    <header>
-      <img src="photo_5327935621525798694_y.jpg" alt="Камиль" class="avatar">
-      <h1>Привет! Я Камиль</h1>
-      <p>IT специалист • Люблю учиться новому</p>
-    </header>
-
-    <main>
-      <section class="compact-text">
-        <h2>Обо мне</h2>
-        <p>Опытный специалист широкого профиля. Увлекаюсь веб-разработкой, делаю небольшие проекты и хочу расти как специалист.</p>
-        <p>Более 10 лет успешно решаю задачи в области технической поддержки офисных сотрудников и ИТ-инфраструктуры компаний.</p>
-        <p>Основные обязанности: администрирование сетей и обслуживание серверов, настройка и ремонт ПК, ноутбуков и мобильных устройств, копирайтинг, создание и поддержка веб-сайтов, контент-менеджмент.</p>
-        <p>Обладаю глубокими техническими компетенциями и стремлюсь быстро и качественно решать задачи.</p>
-      </section>
-
-      <section>
-        <h2>Контакты</h2>
-        <ul class="social-links">
-          <li><a href="https://github.com/komixtnt-bit" target="_blank"><i class="fab fa-github"></i> GitHub</a></li>
-          <li><a href="https://t.me/unrealkomix" target="_blank"><i class="fab fa-telegram"></i> Telegram</a></li>
-          <li><a href="mailto:komixtnt@gmail.com"><i class="fas fa-envelope"></i> Email</a></li>
-        </ul>
-      </section>
-    </main>
-
-    <footer>
-    </footer>
+  <nav class="vb-k7m__nav" aria-label="Навигация по странице">
+    <span class="vb-k7m__brand">KAMIL<span style="color:#8cffcb">/</span>IT</span>
+    <span class="vb-k7m__availability"><span class="vb-k7m__dot"></span> Открыт к интересным задачам</span>
+  </nav>
+  <div class="vb-k7m__hero-inner">
+    <div class="vb-k7m__intro">
+      <p class="vb-k7m__eyebrow">IT-специалист · более 10 лет опыта</p>
+      <h1 class="vb-k7m__title" id="vb-k7m-title">Привет,<br>я Камиль<span>.</span></h1>
+      <p class="vb-k7m__lead">Соединяю техническую поддержку, инфраструктуру и веб-разработку. Люблю разбираться в сложном и находить решения, которые действительно работают.</p>
+      <div class="vb-k7m__hero-meta"><span class="vb-k7m__meta-line"></span><span>Поддержка · инфраструктура · веб</span></div>
+    </div>
+    <div class="vb-k7m__portrait-frame"><img class="vb-k7m__portrait" src="https://static.tildacdn.com/tila3030-3731-4335-a565-333537383865/IMG_6472.jpg" alt="Камиль на фоне гор, IT-специалист"><canvas class="vb-k7m__pixel-canvas" aria-hidden="true"></canvas><div class="vb-k7m__portrait-caption"><span>Профиль специалиста</span><span>RU / IT</span></div></div>
   </div>
-</body>
-</html>
-
-
-
-
-
-
+  <span class="vb-k7m__scroll">Прокрутите вниз</span>
+  <script>
+    (function () {
+      var root = document.getElementById('vb-k7m-hero');
+      if (!root) return;
+      var frame = root.querySelector('.vb-k7m__portrait-frame');
+      var image = root.querySelector('.vb-k7m__portrait');
+      var canvas = root.querySelector('.vb-k7m__pixel-canvas');
+      if (!frame || !image || !canvas) return;
+      var context = canvas.getContext('2d');
+      if (!context) return;
+      var imageReady = false;
+      var pointer = { x: -1000, y: -1000 };
+      var radius = 58;
+      var blockSize = 7;
+      var resizeCanvas = function () {
+        var rect = image.getBoundingClientRect();
+        if (!rect.width || !rect.height) return;
+        var ratio = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = Math.round(rect.width * ratio);
+        canvas.height = Math.round(rect.height * ratio);
+        canvas.style.width = rect.width + 'px';
+        canvas.style.height = rect.height + 'px';
+        canvas.style.left = '12px';
+        canvas.style.top = '12px';
+        canvas.style.inset = '12px auto auto 12px';
+        context.setTransform(ratio, 0, 0, ratio, 0, 0);
+        draw();
+      };
+      var draw = function () {
+        if (!imageReady) return;
+        var rect = image.getBoundingClientRect();
+        if (!rect.width || !rect.height) return;
+        context.clearRect(0, 0, rect.width, rect.height);
+        var left = Math.max(0, pointer.x - radius);
+        var top = Math.max(0, pointer.y - radius);
+        var right = Math.min(rect.width, pointer.x + radius);
+        var bottom = Math.min(rect.height, pointer.y + radius);
+        if (right <= left || bottom <= top) return;
+        var width = Math.max(1, Math.ceil((right - left) / blockSize));
+        var height = Math.max(1, Math.ceil((bottom - top) / blockSize));
+        var small = document.createElement('canvas');
+        small.width = width;
+        small.height = height;
+        var smallContext = small.getContext('2d');
+        if (!smallContext) return;
+        smallContext.imageSmoothingEnabled = true;
+        smallContext.drawImage(image, left, top, right - left, bottom - top, 0, 0, width, height);
+        context.imageSmoothingEnabled = false;
+        context.drawImage(small, 0, 0, width, height, left, top, right - left, bottom - top);
+        context.save();
+        context.globalCompositeOperation = 'destination-in';
+        var gradient = context.createRadialGradient(pointer.x, pointer.y, radius * .42, pointer.x, pointer.y, radius);
+        gradient.addColorStop(0, 'rgba(255,255,255,1)');
+        gradient.addColorStop(1, 'rgba(255,255,255,0)');
+        context.fillStyle = gradient;
+        context.fillRect(left, top, right - left, bottom - top);
+        context.restore();
+      };
+      var onMove = function (event) {
+        var rect = image.getBoundingClientRect();
+        pointer.x = event.clientX - rect.left;
+        pointer.y = event.clientY - rect.top;
+        frame.classList.add('vb-k7m__portrait-frame--pixel-active');
+        draw();
+      };
+      var onLeave = function () {
+        pointer.x = -1000;
+        pointer.y = -1000;
+        frame.classList.remove('vb-k7m__portrait-frame--pixel-active');
+        context.clearRect(0, 0, canvas.width, canvas.height);
+      };
+      var onImageReady = function () { imageReady = true; resizeCanvas(); };
+      frame.addEventListener('pointermove', onMove);
+      frame.addEventListener('pointerleave', onLeave);
+      if (image.complete && image.naturalWidth) onImageReady();
+      else image.addEventListener('load', onImageReady, { once: true });
+      window.addEventListener('resize', resizeCanvas);
+    })();
+  </script>
+</section>
