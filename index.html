@@ -1,484 +1,107 @@
-<!DOCTYPE html>
-<html lang="ru">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#070b14" />
-    <meta name="description" content="Портфолио KAMIL/IT — разработка, автоматизация и digital-решения для бизнеса." />
-    <title>KAMIL/IT | Портфолио</title>
-    <style>
-      :root {
-        --bg: #070b14;
-        --panel: #0c1322;
-        --line: rgba(120, 170, 255, 0.16);
-        --ink: #f4f7ff;
-        --muted: #a6b2c7;
-        --accent: #8cffcb;
-      }
-
-      * { box-sizing: border-box; }
-      html { scroll-behavior: smooth; }
-      body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: var(--bg);
-        color: var(--ink);
-      }
-
-      a { color: inherit; }
-      img { max-width: 100%; display: block; }
-
-      .hero {
-        position: relative;
-        min-height: 100vh;
-        overflow: hidden;
-        background:
-          radial-gradient(ellipse at 72% 38%, rgba(40, 120, 255, 0.22), transparent 45%),
-          radial-gradient(ellipse at 12% 90%, rgba(0, 200, 170, 0.12), transparent 30%),
-          #070b14;
-      }
-
-      .hero::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background-image:
-          linear-gradient(rgba(110, 200, 255, 0.12) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(110, 200, 255, 0.12) 1px, transparent 1px);
-        background-size: 58px 58px;
-        opacity: 0.35;
-        pointer-events: none;
-      }
-
-      .hero::after {
-        content: "";
-        position: absolute;
-        width: min(60vw, 720px);
-        aspect-ratio: 1;
-        right: -12%;
-        top: 8%;
-        border: 1px solid rgba(140, 255, 203, 0.11);
-        border-radius: 50%;
-        box-shadow: 0 0 96px rgba(140, 255, 203, 0.12);
-        pointer-events: none;
-      }
-
-      .nav,
-      .hero-inner,
-      .about-inner,
-      .contact-inner,
-      .footer-bottom {
-        width: min(1120px, calc(100% - 48px));
-        margin: 0 auto;
-      }
-
-      .nav {
-        position: relative;
-        z-index: 1;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 26px 0;
-        border-bottom: 1px solid var(--line);
-      }
-
-      .brand {
-        font-weight: 700;
-        letter-spacing: 0.06em;
-        font-size: 15px;
-      }
-
-      .brand span {
-        color: var(--accent);
-      }
-
-      .status {
-        display: flex;
-        align-items: center;
-        gap: 9px;
-        font-size: 12px;
-        color: #c5d4e5;
-      }
-
-      .dot {
-        width: 7px;
-        height: 7px;
-        border-radius: 50%;
-        background: var(--accent);
-        box-shadow: 0 0 12px rgba(140, 255, 203, 0.8);
-      }
-
-      .hero-inner {
-        position: relative;
-        z-index: 1;
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) 290px;
-        align-items: center;
-        gap: clamp(32px, 4vw, 72px);
-        padding: clamp(50px, 9vh, 96px) 0;
-      }
-
-      .eyebrow {
-        margin: 0 0 20px;
-        color: var(--accent);
-        font-size: 12px;
-        text-transform: uppercase;
-        letter-spacing: 0.13em;
-      }
-
-      h1 {
-        margin: 0;
-        max-width: 700px;
-        font-size: clamp(42px, 7vw, 82px);
-        line-height: 0.99;
-        letter-spacing: -0.045em;
-      }
-
-      h1 span { color: var(--accent); }
-
-      .lead {
-        max-width: 530px;
-        margin: 24px 0 0;
-        color: #c0cadd;
-        font-size: clamp(16px, 1.7vw, 19px);
-        line-height: 1.65;
-      }
-
-      .hero-meta {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        margin-top: 34px;
-        color: var(--muted);
-        font-size: 12px;
-        font-weight: 500;
-      }
-
-      .meta-line {
-        width: 32px;
-        height: 1px;
-        background: var(--accent);
-      }
-
-      .portrait-frame {
-        position: relative;
-        padding: 12px;
-        border-radius: 24px;
-        border: 1px solid rgba(140, 255, 203, 0.38);
-        background: #0d1526;
-        box-shadow: 14px 14px 0 rgba(140, 255, 203, 0.08), 0 0 38px rgba(59, 213, 168, 0.18);
-        transition: transform 0.5s ease, box-shadow 0.5s ease;
-      }
-
-      .portrait-frame:hover {
-        transform: translateY(-5px);
-        box-shadow: 18px 20px 0 rgba(140, 255, 203, 0.09), 0 0 54px rgba(59, 213, 168, 0.19);
-      }
-
-      .portrait-frame::before,
-      .portrait-frame::after {
-        content: "";
-        position: absolute;
-        width: 24px;
-        height: 24px;
-        border-color: var(--accent);
-        border-style: solid;
-        opacity: 0.8;
-        pointer-events: none;
-      }
-
-      .portrait-frame::before {
-        top: -5px;
-        left: -5px;
-        border-width: 1px 0 0 1px;
-        border-top-left-radius: 28px;
-      }
-
-      .portrait-frame::after {
-        right: -5px;
-        bottom: -5px;
-        border-width: 0 1px 1px 0;
-        border-bottom-right-radius: 28px;
-      }
-
-      .portrait {
-        width: 100%;
-        border-radius: 14px;
-        aspect-ratio: 4 / 5;
-        object-fit: cover;
-        background: #111a2e;
-      }
-
-      .portrait-placeholder {
-        display: none;
-        place-items: center;
-        width: 100%;
-        aspect-ratio: 4 / 5;
-        border-radius: 14px;
-        font-size: 88px;
-        font-weight: 700;
-        color: rgba(140, 255, 203, 0.45);
-        background: linear-gradient(135deg, rgba(17, 26, 46, 0.9), rgba(8, 13, 24, 0.7));
-      }
-
-      .portrait-empty .portrait { display: none; }
-      .portrait-empty .portrait-placeholder { display: grid; }
-
-      .portrait-caption {
-        display: flex;
-        justify-content: space-between;
-        gap: 8px;
-        padding: 12px 2px 0;
-        color: #b7c5d8;
-        font-size: 11px;
-      }
-
-      .scroll {
-        position: absolute;
-        left: 50%;
-        bottom: 22px;
-        transform: translateX(-50%);
-        color: #8391a8;
-        font-size: 10px;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-      }
-
-      .about {
-        background: linear-gradient(180deg, #070b14, #0a1020 30%, #0a1020 70%, #070b14);
-        padding: clamp(64px, 9vw, 112px) 0;
-      }
-
-      .about-inner {
-        display: grid;
-        grid-template-columns: 0.72fr 1.28fr;
-        gap: clamp(40px, 8vw, 120px);
-      }
-
-      .about h2 {
-        margin: 0;
-        font-size: clamp(32px, 4vw, 48px);
-        line-height: 1.08;
-        letter-spacing: -0.035em;
-      }
-
-      .about h2 span {
-        display: block;
-        margin-top: 12px;
-        color: var(--accent);
-        font-size: 13px;
-        letter-spacing: 0.04em;
-      }
-
-      .about-copy p {
-        margin: 0 0 16px;
-        max-width: 65ch;
-        color: #c0cadd;
-        font-size: 16px;
-        line-height: 1.75;
-      }
-
-      .about-copy p:last-child { margin-bottom: 0; }
-
-      .contact {
-        background: #070b14;
-        color: #f4f7ff;
-        border-top: 1px solid rgba(120, 170, 255, 0.16);
-      }
-
-      .contact-inner {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 30px;
-        padding: 48px 0 36px;
-      }
-
-      .contact h2 {
-        margin: 0 0 7px;
-        font-size: clamp(24px, 3vw, 34px);
-        line-height: 1.15;
-      }
-
-      .contact-note {
-        margin: 0;
-        color: #a6b2c7;
-        font-size: 14px;
-      }
-
-      .links {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-      }
-
-      .links a {
-        display: inline-flex;
-        align-items: center;
-        min-height: 44px;
-        padding: 0 17px;
-        border: 1px solid rgba(120, 170, 255, 0.25);
-        border-radius: 3px;
-        color: #eaf0fb;
-        text-decoration: none;
-        font-weight: 600;
-        transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-      }
-
-      .links a:hover {
-        background: var(--accent);
-        border-color: var(--accent);
-        color: #08120e;
-      }
-
-      .links a:focus-visible {
-        outline: 2px solid var(--accent);
-        outline-offset: 3px;
-      }
-
-      .footer-bottom {
-        color: #718097;
-        font-size: 11px;
-        padding: 0 0 22px;
-      }
-
-      @media (max-width: 760px) {
-        .hero-inner,
-        .about-inner,
-        .contact-inner {
-          width: min(100% - 32px, 1120px);
+<!DOCTYPE html> <html> <head> <meta charset="utf-8" /> <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!--metatextblock--> <title>myweb</title> <meta property="og:url" content="https://forty-violet-stick.tilda.ws" /> <meta property="og:title" content="myweb" /> <meta property="og:description" content="" /> <meta property="og:type" content="website" /> <link rel="canonical" href="index.html"> <!--/metatextblock--> <meta name="format-detection" content="telephone=no" /> <meta http-equiv="x-dns-prefetch-control" content="on"> <link rel="dns-prefetch" href="https://ws.tildacdn.com"> <link rel="dns-prefetch" href="https://static.tildacdn.com"> <!--favicons--> <link rel="shortcut icon" href="https://static.tildacdn.com/tila3066-6330-4132-b438-373130323039/C9347209-B91E-4814-B.png" type="image/x-icon"/> <!--/favicons--> <!-- Assets --> <script src="https://neo.tildacdn.com/js/tilda-fallback-1.0.min.js" async charset="utf-8"></script> <link rel="stylesheet" href="https://static.tildacdn.com/css/tilda-grid-3.0.min.css" type="text/css" media="all" onerror="this.loaderr='y';"/> <link rel="stylesheet" href="https://static.tildacdn.com/ws/project55705809/tilda-blocks-page365410809.min.css?t=1793985127" type="text/css" media="all" onerror="this.loaderr='y';" /> <link rel="stylesheet" href="https://static.tildacdn.com/css/fonts-tildasans.css" type="text/css" media="all" onerror="this.loaderr='y';" /> <link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap&subset=cyrillic"> <style id="tech-fonts">:root,body{--t-headline-font:'Unbounded','IBM Plex Sans',Arial,sans-serif !important;--t-text-font:'IBM Plex Sans',Arial,sans-serif !important;--tech-mono-font:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;} .vb-k7m__title{letter-spacing:-.03em !important;font-size:clamp(38px,6.2vw,74px) !important;} @media(max-width:560px){.vb-k7m__title{font-size:clamp(34px,10vw,52px) !important;}} .vb-k7m__brand,.vb-k7m__eyebrow,.vb-k7m__availability,.vb-k7m__hero-meta,.vb-k7m__portrait-caption,.vb-k7m__scroll,.vb-k7m__portrait-ph,.vb-n4q__heading span,.vb-r2c__link,.vb-r2c__bottom{font-family:var(--tech-mono-font) !important;}</style> <script nomodule src="https://static.tildacdn.com/js/tilda-polyfill-1.0.min.js" charset="utf-8"></script> <script type="text/javascript">function t_onReady(func) {if(document.readyState!='loading') {func();} else {document.addEventListener('DOMContentLoaded',func);}}
+function t_onFuncLoad(funcName,okFunc,time) {if(typeof window[funcName]==='function') {okFunc();} else {setTimeout(function() {t_onFuncLoad(funcName,okFunc,time);},(time||100));}}</script> <script src="https://static.tildacdn.com/js/tilda-scripts-3.0.min.js" charset="utf-8" defer onerror="this.loaderr='y';"></script> <script src="https://static.tildacdn.com/ws/project55705809/tilda-blocks-page365410809.min.js?t=1793985127" charset="utf-8" async onerror="this.loaderr='y';"></script> <script src="https://static.tildacdn.com/js/tilda-lazyload-1.0.min.js" charset="utf-8" async onerror="this.loaderr='y';"></script> <script src="https://static.tildacdn.com/js/tilda-events-1.0.min.js" charset="utf-8" async onerror="this.loaderr='y';"></script> <script type="text/javascript">window.dataLayer=window.dataLayer||[];</script> <script type="text/javascript">(function() {var ttt='cebo';var tt='oog';var re=new RegExp("bot|g" + tt + "le|yandex|baidu|bing|msn|duckduckbot|teoma|slurp|crawler|spider|robot|crawling|fa" + ttt + "ok|lighthouse","i");if((re.test(navigator.userAgent))===false&&typeof(sessionStorage)!='undefined'&&sessionStorage.getItem('visited')!=='y'&&document.visibilityState){var style=document.createElement('style');style.type='text/css';style.innerHTML='@media screen and (min-width: 980px) {.t-records {opacity: 0;}.t-records_animated {-webkit-transition: opacity ease-in-out .2s;-moz-transition: opacity ease-in-out .2s;-o-transition: opacity ease-in-out .2s;transition: opacity ease-in-out .2s;}.t-records.t-records_visible {opacity: 1;}}';document.getElementsByTagName('head')[0].appendChild(style);function t_setvisRecs(){var alr=document.querySelectorAll('.t-records');Array.prototype.forEach.call(alr,function(el) {el.classList.add("t-records_animated");});setTimeout(function() {Array.prototype.forEach.call(alr,function(el) {el.classList.add("t-records_visible");});sessionStorage.setItem("visited","y");},400);}
+document.addEventListener('DOMContentLoaded',t_setvisRecs);}})();</script></head> <body class="t-body" style="margin:0;"> <!--allrecords--> <div id="allrecords" class="t-records" data-hook="blocks-collection-content-node" data-tilda-project-id="55705809" data-tilda-page-id="365410809" data-tilda-formskey="8f3fd3cbc063f86ffb2b905255705809" data-tilda-cookie="no" data-tilda-lazy="yes" data-tilda-root-zone="com" data-tilda-project-country="RU"> <div id="rec5548037401" class="r t-rec" style=" " data-record-type="1370"> <!-- T1370 --> <div class="t1370"> <!-- nominify begin --> <!doctype html> <html lang="ru"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1"> <meta name="theme-color" content="#070b14"> <meta name="description" content="Камиль — IT-специалист. Техническая поддержка, инфраструктура и веб-разработка."> <title>Камиль — IT-специалист</title> </head> <body style="margin:0"> <section class="vb-k7m vb-k7m-hero" id="vb-k7m-hero" data-section-name="Первый экран" data-vibeblock-unique-section="yes" aria-labelledby="vb-k7m-title"> <style>
+    .vb-k7m,
+    .vb-k7m * { box-sizing: border-box; }
+    .vb-k7m input,
+    .vb-k7m textarea,
+    .vb-k7m select { font: inherit; }
+    .vb-k7m { --vb-bg:#070b14; --vb-panel:#0c1322; --vb-line:rgba(120,170,255,.16); --vb-ink:#f4f7ff; --vb-muted:#a6b2c7; --vb-accent:#8cffcb; width:100%; color:var(--vb-ink); background:var(--vb-bg); font-family:var(--t-text-font); }
+    .vb-k7m__title,.vb-k7m__lead,.vb-k7m__eyebrow,.vb-k7m__hero-meta,.vb-k7m__portrait-caption,.vb-k7m__availability,.vb-k7m__scroll { font-family:var(--t-text-font); }
+    .vb-k7m__title,.vb-k7m__brand { font-family:var(--t-headline-font); }
+    .vb-k7m__shell { width:min(1120px,100%); margin:0 auto; padding:0 42px; }
+    .vb-k7m-hero { min-height:100svh; position:relative; isolation:isolate; overflow:hidden; display:flex; flex-direction:column; background:radial-gradient(ellipse at 72% 38%,rgba(40,120,255,.22),transparent 45%),radial-gradient(ellipse at 12% 90%,rgba(0,200,170,.16),transparent 40%),radial-gradient(rgba(140,255,203,.09) 1px,transparent 1.4px) 0 0/29px 29px,#070b14; }
+    .vb-k7m-hero:before { content:""; position:absolute; z-index:-1; inset:0; pointer-events:none; opacity:.35; background-image:linear-gradient(rgba(110,200,255,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(110,200,255,.12) 1px,transparent 1px); background-size:58px 58px; mask-image:linear-gradient(to bottom,black,transparent 90%); animation:vb-k7m-grid-drift 24s linear infinite; }
+    .vb-k7m-hero:after { content:""; position:absolute; z-index:-1; width:min(60vw,720px); aspect-ratio:1; right:-12%; top:8%; border:1px solid rgba(140,255,203,.11); border-radius:50%; box-shadow:0 0 0 48px rgba(140,255,203,.025),0 0 0 96px rgba(140,255,203,.018),inset 0 0 100px rgba(36,146,148,.08); pointer-events:none; animation:vb-k7m-orbit-glow 9s ease-in-out infinite alternate; }
+    .vb-k7m-hero .vb-k7m__nav:after { content:""; position:absolute; left:0; right:0; bottom:-1px; height:1px; background:linear-gradient(90deg,transparent,rgba(140,255,203,.55),transparent); opacity:.55; }
+    @keyframes vb-k7m-grid-drift { from { background-position:0 0,0 0; } to { background-position:58px 58px,58px 58px; } }
+    @keyframes vb-k7m-orbit-glow { from { transform:translate3d(0,0,0) scale(.97); opacity:.55; } to { transform:translate3d(-18px,16px,0) scale(1.03); opacity:1; } }
+    .vb-k7m__nav { position:relative; z-index:1; width:min(1120px,100%); margin:0 auto; padding:26px 42px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--vb-line); }
+    .vb-k7m__brand { font:700 15px/1 var(--t-headline-font); letter-spacing:.06em; color:var(--vb-ink); }
+    .vb-k7m__availability { display:flex; align-items:center; gap:9px; color:#c5d4e5; font-size:12px; }
+    .vb-k7m__dot { width:7px; height:7px; border-radius:50%; background:var(--vb-accent); box-shadow:0 0 12px rgba(140,255,203,.8); }
+    .vb-k7m__hero-inner { position:relative; z-index:1; width:min(1120px,100%); margin:auto; padding:clamp(48px,9vh,96px) 42px; display:grid; grid-template-columns:minmax(0,1fr) 290px; align-items:center; gap:clamp(42px,8vw,110px); }
+    .vb-k7m__eyebrow { margin:0 0 20px; color:var(--vb-accent); font:600 12px/1.4 var(--t-text-font); letter-spacing:.13em; text-transform:uppercase; }
+    .vb-k7m__title { max-width:700px; margin:0; font:650 clamp(42px,7vw,82px)/.99 var(--t-headline-font); letter-spacing:-.045em; text-wrap:balance; }
+    .vb-k7m__title span { color:var(--vb-accent); }
+    .vb-k7m__lead { max-width:530px; margin:24px 0 0; color:#c0cadd; font:400 clamp(16px,1.7vw,19px)/1.65 var(--t-text-font); }
+    .vb-k7m__hero-meta { display:flex; align-items:center; gap:14px; margin-top:34px; color:var(--vb-muted); font:500 12px/1.5 var(--t-text-font); }
+    .vb-k7m__meta-line { width:32px; height:1px; background:var(--vb-accent); }
+    .vb-k7m__portrait-frame { position:relative; padding:12px; border-radius:24px; border:1px solid rgba(140,255,203,.38); background:#0d1526; box-shadow:14px 14px 0 rgba(140,255,203,.08),0 0 38px rgba(59,213,168,.1); transform:rotate(2deg); transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s ease; }
+    .vb-k7m__portrait-frame:hover { transform:rotate(0) translateY(-5px); box-shadow:18px 20px 0 rgba(140,255,203,.09),0 0 54px rgba(59,213,168,.19); }
+    .vb-k7m__portrait-frame:before,.vb-k7m__portrait-frame:after { content:""; position:absolute; width:24px; height:24px; pointer-events:none; border-color:var(--vb-accent); border-style:solid; opacity:.8; }
+    .vb-k7m__portrait-frame:before { top:-5px; left:-5px; border-width:1px 0 0 1px; border-top-left-radius:28px; }
+    .vb-k7m__portrait-frame:after { right:-5px; bottom:-5px; border-width:0 1px 1px 0; border-bottom-right-radius:28px; }
+    .vb-k7m__portrait { display:block; width:100%; border-radius:14px; aspect-ratio:4/5; object-fit:cover; filter:saturate(.75) contrast(1.04); background:#111a2e; }
+    .vb-k7m__portrait-ph { display:none; position:absolute; inset:12px; border-radius:14px; place-items:center; font:700 88px/1 var(--t-headline-font); color:rgba(140,255,203,.45); background:linear-gradient(140deg,#111a2e,#080d18); letter-spacing:-.04em; }
+    .vb-k7m__portrait-frame--empty .vb-k7m__portrait { display:none; }
+    .vb-k7m__portrait-frame--empty .vb-k7m__portrait-ph { display:grid; }
+    .vb-k7m__portrait-caption { display:flex; justify-content:space-between; gap:8px; padding:12px 2px 0; color:#b7c5d8; font:11px/1.4 var(--t-text-font); }
+    .vb-k7m__scroll { position:absolute; bottom:22px; left:50%; transform:translateX(-50%); color:#8391a8; font:10px/1.4 var(--t-text-font); letter-spacing:.12em; text-transform:uppercase; }
+    @media(max-width:760px) { .vb-k7m__shell,.vb-k7m__nav { padding-left:24px; padding-right:24px; } .vb-k7m__hero-inner { padding:64px 24px 82px; grid-template-columns:minmax(0,1fr) 210px; gap:34px; } .vb-k7m__title { font-size:clamp(40px,8vw,62px); } }
+    @media(max-width:560px) { .vb-k7m__nav { padding-top:20px; padding-bottom:20px; } .vb-k7m__hero-inner { padding-top:48px; display:flex; flex-direction:column-reverse; align-items:stretch; gap:34px; } .vb-k7m__portrait-frame { width:min(215px,70%); margin:0 auto; } .vb-k7m__title { font-size:clamp(42px,12vw,60px); } .vb-k7m__scroll { display:none; } }
+    @media(prefers-reduced-motion:reduce) { .vb-k7m-hero:before,.vb-k7m-hero:after { animation:none; } .vb-k7m__portrait-frame { transition:none; } .vb-k7m-hero * { scroll-behavior:auto!important; } }
+  </style> <nav class="vb-k7m__nav" aria-label="Навигация по странице"> <span class="vb-k7m__brand">KAMIL<span style="color:#8cffcb">/</span>IT</span> <span class="vb-k7m__availability"><span class="vb-k7m__dot"></span> Открыт к интересным задачам</span> </nav> <div class="vb-k7m__hero-inner"> <div class="vb-k7m__intro"> <p class="vb-k7m__eyebrow">IT-специалист · более 10 лет опыта</p> <h1 class="vb-k7m__title" id="vb-k7m-title">Привет,<br>я Камиль<span>.</span></h1> <p class="vb-k7m__lead">Соединяю техническую поддержку, инфраструктуру и веб-разработку. Люблю разбираться в сложном и находить решения, которые действительно работают.</p> <div class="vb-k7m__hero-meta"><span class="vb-k7m__meta-line"></span><span>Поддержка · инфраструктура · веб</span></div> </div> <div class="vb-k7m__portrait-frame"><img class="vb-k7m__portrait" src="https://forty-violet-stick.tilda.ws/IMG_6472.jpg" alt="Камиль на фоне гор, IT-специалист" decoding="async"><span class="vb-k7m__portrait-ph" aria-hidden="true">K</span><div class="vb-k7m__portrait-caption"><span>Профиль специалиста</span><span>RU / IT</span></div></div> </div> <span class="vb-k7m__scroll">Прокрутите вниз</span> <script>
+    (function () {
+      var root = document.getElementById('vb-k7m-hero');
+      if (!root) return;
+      var frame = root.querySelector('.vb-k7m__portrait-frame');
+      var image = root.querySelector('.vb-k7m__portrait');
+      if (!frame || !image) return;
+      var sources = [
+        'IMG_6472.jpg',
+        'IMG_6472.JPG',
+        'IMG_6472.jpeg',
+        'img/IMG_6472.jpg',
+        'images/IMG_6472.jpg',
+        'https://static.tildacdn.com/tila3030-3731-4335-a565-333537383865/IMG_6472.jpg'
+      ];
+      var index = 0;
+      var advance = function () {
+        index += 1;
+        if (index < sources.length) {
+          image.src = sources[index];
+          return;
         }
-
-        .hero-inner {
-          grid-template-columns: minmax(0, 1fr) 210px;
-          gap: 34px;
-        }
-
-        .about-inner {
-          grid-template-columns: 1fr;
-          gap: 28px;
-        }
-      }
-
-      @media (max-width: 560px) {
-        .nav {
-          padding-top: 20px;
-          padding-bottom: 20px;
-        }
-
-        .hero-inner {
-          display: flex;
-          flex-direction: column-reverse;
-          align-items: stretch;
-          gap: 34px;
-          padding-top: 48px;
-        }
-
-        .portrait-frame {
-          width: min(215px, 70vw);
-          margin: 0 auto;
-        }
-
-        .scroll { display: none; }
-
-        .contact-inner {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-
-        .links {
-          width: 100%;
-          flex-direction: column;
-        }
-
-        .links a {
-          justify-content: center;
-        }
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        html { scroll-behavior: auto; }
-        .portrait-frame {
-          transition: none;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <header class="hero" id="top">
-      <nav class="nav" aria-label="Навигация по странице">
-        <div class="brand">KAMIL<span>/</span>IT</div>
-        <div class="status"><span class="dot"></span>Доступен</div>
-      </nav>
-
-      <div class="hero-inner">
-        <div>
-          <p class="eyebrow">IT • product • automation</p>
-          <h1>Разрабатываю <span>системы</span>, которые работают на результат.</h1>
-          <p class="lead">Опытный специалист по разработке и автоматизации процессов. Помогаю бизнесу и проектам ускорять запуск, снижать ручную работу и делать цифровые продукты понятными и устойчивыми.</p>
-          <div class="hero-meta">
-            <span class="meta-line"></span>
-            <span>RU / IT</span>
-          </div>
-        </div>
-
-        <div class="portrait-frame" id="portrait-frame">
-          <img
-            class="portrait"
-            src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80"
-            alt="Портрет разработчика"
-            loading="eager"
-            decoding="async"
-            onerror="this.style.display='none'; this.parentElement.classList.add('portrait-empty');"
-          />
-          <span class="portrait-placeholder" aria-hidden="true">K</span>
-          <div class="portrait-caption"><span>RU / IT</span><span>available</span></div>
-        </div>
-      </div>
-
-      <div class="scroll">scroll</div>
-    </header>
-
-    <main>
-      <section class="about" id="about">
-        <div class="about-inner">
-          <h2>Практичный подход<span>Обо мне</span></h2>
-          <div class="about-copy">
-            <p>Опытный специалист в области архитектуры решений, автоматизации и разработки digital-проектов. Работаю с задачами, где важны скорость запуска, понятные процессы и качественный пользовательский опыт.</p>
-            <p>Помогаю командам и бизнесу закрывать задачи от идеи до рабочего результата: от аналитики и структуры процессов до реализации и поддержки готовых решений.</p>
-            <p>Подход основан на практической эффективности, прозрачной коммуникации и ясной приоритизации задач.</p>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="contact" id="contact">
-      <div class="contact-inner">
-        <div>
-          <h2>Обсудим задачу?</h2>
-          <p class="contact-note">Свяжитесь со мной удобным способом — обсудим проект, задачу или сотрудничество.</p>
-        </div>
-        <div class="links" aria-label="Контакты">
-          <a href="https://github.com/komixtnt-bit" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-          <a href="https://t.me/unrealkomix" target="_blank" rel="noopener noreferrer">Telegram ↗</a>
-          <a href="mailto:komixtnt@gmail.com">Email ↗</a>
-        </div>
-      </div>
-      <div class="footer-bottom">© 2025 KAMIL/IT</div>
-    </footer>
-
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        const frame = document.getElementById('portrait-frame');
-        const image = frame ? frame.querySelector('.portrait') : null;
-
-        if (image) {
-          image.addEventListener('error', function () {
-            image.style.display = 'none';
-            frame.classList.add('portrait-empty');
-          });
-        }
-      });
-    </script>
-  </body>
-</html>
+        frame.classList.add('vb-k7m__portrait-frame--empty');
+      };
+      image.addEventListener('error', advance);
+      if (image.complete && image.naturalWidth === 0) advance();
+    })();
+  </script> </section> </body> </html> <!-- nominify end --> </div> <script>(()=>{const record=document.getElementById('rec5548037401');if(!record) {return;}
+const elements=record.querySelectorAll('.t1370 [data-vibeblock-anchor]');const anchors=Array.from(elements,element=>({element,parentNode:element.parentNode,anchorName:element.getAttribute('data-vibeblock-anchor'),}));for(const {element,parentNode,anchorName} of anchors) {if(!anchorName) continue;const anchor=document.createElement('a');anchor.name=anchorName;anchor.setAttribute('style','font-size:0');parentNode.insertBefore(anchor,element);}})();</script> </div> <div id="rec5548072601" class="r t-rec" style=" " data-record-type="1370"> <!-- T1370 --> <div class="t1370"> <!-- nominify begin --> <section class="vb-n4q vb-n4q-about" id="vb-n4q-about" data-section-name="Обо мне" data-vibeblock-unique-section="yes" aria-labelledby="vb-n4q-title"> <style>
+    .vb-n4q,
+    .vb-n4q * { box-sizing:border-box; }
+    .vb-n4q input,
+    .vb-n4q textarea,
+    .vb-n4q select { font:inherit; }
+    .vb-n4q { background:linear-gradient(180deg,#070b14,#0a1020 30%,#0a1020 70%,#070b14),#0a1020; background-image:linear-gradient(180deg,rgba(7,11,20,0),rgba(7,11,20,0)),linear-gradient(rgba(110,200,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(110,200,255,.04) 1px,transparent 1px); background-size:auto,58px 58px,58px 58px; color:#f4f7ff; font-family:var(--t-text-font); }
+    .vb-n4q__inner { width:min(1120px,100%); margin:0 auto; padding:clamp(64px,9vw,112px) 42px; display:grid; grid-template-columns:.72fr 1.28fr; gap:clamp(40px,8vw,120px); }
+    .vb-n4q__heading { margin:0; font:600 clamp(32px,4vw,48px)/1.08 var(--t-headline-font); letter-spacing:-.035em; text-wrap:balance; }
+    .vb-n4q__heading span { display:block; margin-top:12px; color:#8cffcb; font:500 13px/1.5 var(--t-text-font); letter-spacing:.04em; }
+    .vb-n4q__copy p { margin:0 0 16px; max-width:65ch; color:#c0cadd; font:400 16px/1.75 var(--t-text-font); text-wrap:pretty; }
+    .vb-n4q__copy p:last-child { margin-bottom:0; }
+    @media(max-width:760px) { .vb-n4q__inner { padding-left:24px; padding-right:24px; grid-template-columns:1fr; gap:28px; } }
+    @media(max-width:480px) { .vb-n4q__inner { padding-top:56px; padding-bottom:56px; } .vb-n4q__copy p { font-size:15px; } }
+  </style> <div class="vb-n4q__inner"> <h2 class="vb-n4q__heading" id="vb-n4q-title">Практичный подход<span>Обо мне</span></h2> <div class="vb-n4q__copy"> <p>Опытный специалист широкого профиля. Увлекаюсь веб-разработкой, делаю небольшие проекты и хочу расти как специалист.</p> <p>Более 10 лет успешно решаю задачи в области технической поддержки офисных сотрудников и ИТ-инфраструктуры компаний.</p> <p>Администрирую сети и обслуживаю серверы, настраиваю и ремонтирую ПК, ноутбуки и мобильные устройства. Также занимаюсь копирайтингом, созданием и поддержкой веб-сайтов и контент-менеджментом.</p> <p>Обладаю глубокими техническими компетенциями и стремлюсь быстро и качественно решать задачи.</p> </div> </div> </section> <!-- nominify end --> </div> <script>(()=>{const record=document.getElementById('rec5548072601');if(!record) {return;}
+const elements=record.querySelectorAll('.t1370 [data-vibeblock-anchor]');const anchors=Array.from(elements,element=>({element,parentNode:element.parentNode,anchorName:element.getAttribute('data-vibeblock-anchor'),}));for(const {element,parentNode,anchorName} of anchors) {if(!anchorName) continue;const anchor=document.createElement('a');anchor.name=anchorName;anchor.setAttribute('style','font-size:0');parentNode.insertBefore(anchor,element);}})();</script> </div> <div id="rec5548073801" class="r t-rec" style=" " data-record-type="1370"> <!-- T1370 --> <div class="t1370"> <!-- nominify begin --> <section class="vb-r2c vb-r2c-contact" id="vb-r2c-contact" data-section-name="Контакты" data-vibeblock-unique-section="yes" aria-labelledby="vb-r2c-title"> <style>
+    .vb-r2c,
+    .vb-r2c * { box-sizing:border-box; }
+    .vb-r2c input,
+    .vb-r2c textarea,
+    .vb-r2c select { font:inherit; }
+    .vb-r2c { background:#070b14; color:#f4f7ff; font-family:var(--t-text-font); }
+    .vb-r2c__inner { width:min(1120px,100%); margin:0 auto; padding:48px 42px 36px; border-top:1px solid rgba(120,170,255,.16); display:flex; align-items:center; justify-content:space-between; gap:30px; }
+    .vb-r2c__title { margin:0 0 7px; font:600 clamp(24px,3vw,34px)/1.15 var(--t-headline-font); letter-spacing:-.03em; }
+    .vb-r2c__note { margin:0; color:#a6b2c7; font:14px/1.5 var(--t-text-font); }
+    .vb-r2c__links { display:flex; flex-wrap:wrap; gap:10px; }
+    .vb-r2c__link { display:inline-flex; align-items:center; min-height:44px; padding:0 17px; border:1px solid rgba(120,170,255,.25); border-radius:3px; color:#eaf0fb; text-decoration:none; font:600 13px/1 var(--t-text-font); transition:background .2s ease,border-color .2s ease,color .2s ease; }
+    .vb-r2c__link:hover { background:#8cffcb; border-color:#8cffcb; color:#08120e; }
+    .vb-r2c__link:focus-visible { outline:2px solid #8cffcb; outline-offset:3px; }
+    .vb-r2c__bottom { width:min(1120px,100%); margin:0 auto; padding:0 42px 22px; color:#718097; font:11px/1.5 var(--t-text-font); }
+    @media(max-width:720px) { .vb-r2c__inner { padding:38px 24px 30px; align-items:flex-start; flex-direction:column; } .vb-r2c__links { width:100%; } }
+    @media(max-width:480px) { .vb-r2c__bottom { padding:0 24px 20px; } .vb-r2c__links { flex-direction:column; } .vb-r2c__link { justify-content:center; } }
+    @media(prefers-reduced-motion:reduce) { .vb-r2c__link { transition:none; } }
+  </style> <div class="vb-r2c__inner"> <div><h2 class="vb-r2c__title" id="vb-r2c-title">Обсудим задачу?</h2><p class="vb-r2c__note">Свяжитесь со мной удобным способом.</p></div> <div class="vb-r2c__links"><a class="vb-r2c__link" href="https://github.com/komixtnt-bit" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a class="vb-r2c__link" href="https://t.me/unrealkomix" target="_blank" rel="noopener noreferrer">Telegram ↗</a><a class="vb-r2c__link" href="mailto:komixtnt@gmail.com">Email ↗</a></div> </div> <div class="vb-r2c__bottom">© Камиль · IT-специалист</div> </section> <!-- nominify end --> </div> <script>(()=>{const record=document.getElementById('rec5548073801');if(!record) {return;}
+const elements=record.querySelectorAll('.t1370 [data-vibeblock-anchor]');const anchors=Array.from(elements,element=>({element,parentNode:element.parentNode,anchorName:element.getAttribute('data-vibeblock-anchor'),}));for(const {element,parentNode,anchorName} of anchors) {if(!anchorName) continue;const anchor=document.createElement('a');anchor.name=anchorName;anchor.setAttribute('style','font-size:0');parentNode.insertBefore(anchor,element);}})();</script> </div> </div> <!--/allrecords--> <!-- Stat --> <script type="text/javascript">if(!window.mainTracker) {window.mainTracker='tilda';}
+window.tildastatcookie='no';setTimeout(function(){(function(d,w,k,o,g) {var n=d.getElementsByTagName(o)[0],s=d.createElement(o),f=function(){n.parentNode.insertBefore(s,n);};s.type="text/javascript";s.async=true;s.key=k;s.id="tildastatscript";s.src=g;if(w.opera=="[object Opera]") {d.addEventListener("DOMContentLoaded",f,false);} else {f();}})(document,window,'9ca9b7119151a799c789ae8bdb793e83','script','https://static.tildacdn.com/js/tilda-stat-1.0.min.js');},2000);</script> </body> </html>
