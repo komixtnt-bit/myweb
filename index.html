@@ -16,6 +16,8 @@
   --text-dark:#2d1b4e;
   --pixel-border:4px;
   --cap-half:8.4px;
+  --box-bg:rgba(255,255,255,.85);
+  --btn-bg:rgba(255,255,255,.9);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{
@@ -28,14 +30,26 @@ body{
   font-family:'VT323',monospace;
   font-size:22px;line-height:1.6;
   overflow-x:hidden;min-height:100vh;
+  transition:background-color .3s,color .3s;
+}
+/* ТЁМНАЯ ТЕМА */
+body.dark{
+  --bg-color:#171021;
+  --text-dark:#f0e6ff;
+  --box-bg:rgba(30,20,44,.85);
+  --btn-bg:rgba(38,26,56,.9);
+  background-image:
+    linear-gradient(rgba(185,103,255,.16) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(185,103,255,.16) 1px,transparent 1px);
 }
 header,main,footer{position:relative;z-index:1}
 .pixel-box{
-  background:rgba(255,255,255,.85);
+  background:var(--box-bg);
   backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
   border:var(--pixel-border) solid var(--text-dark);
   box-shadow:var(--pixel-border) var(--pixel-border) 0 var(--primary-purple);
   padding:2rem;margin:2rem auto;max-width:800px;position:relative;
+  transition:background-color .3s,border-color .3s;
 }
 header{text-align:center;padding-top:3rem}
 h1{font-family:'Press Start 2P',cursive;font-size:2.5rem;color:var(--primary-purple);text-shadow:3px 3px 0 var(--primary-cyan);margin-bottom:.5rem;letter-spacing:2px}
@@ -72,13 +86,14 @@ h2::before{
   vertical-align:baseline;
 }
 .skills{display:flex;flex-wrap:wrap;gap:1rem;margin-top:1rem}
-.skill-tag{background:var(--primary-cyan);color:var(--text-dark);padding:.4rem .8rem;border:2px solid var(--text-dark);box-shadow:2px 2px 0 var(--text-dark);font-family:'Press Start 2P',cursive;font-size:.55rem;line-height:1.4;transition:transform .1s}
+.skill-tag{background:var(--primary-cyan);color:#2d1b4e;padding:.4rem .8rem;border:2px solid #2d1b4e;box-shadow:2px 2px 0 #2d1b4e;font-family:'Press Start 2P',cursive;font-size:.55rem;line-height:1.4;transition:transform .1s}
 .skill-tag:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--primary-pink)}
 .contacts{display:flex;justify-content:center;gap:1.5rem;margin-top:1.5rem;flex-wrap:wrap}
-.contact-link{text-decoration:none;color:var(--text-dark);border:2px solid var(--text-dark);padding:.5rem 1rem;background:rgba(255,255,255,.9);box-shadow:3px 3px 0 var(--primary-cyan);transition:all .2s;display:flex;align-items:center;gap:8px;cursor:pointer}
-.contact-link:hover{background:var(--primary-pink);transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--text-dark)}
+.contact-link{text-decoration:none;color:var(--text-dark);border:2px solid var(--text-dark);padding:.5rem 1rem;background:var(--btn-bg);box-shadow:3px 3px 0 var(--primary-cyan);transition:all .2s;display:flex;align-items:center;gap:8px;cursor:pointer}
+.contact-link:hover{background:var(--primary-pink);color:#2d1b4e;transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--text-dark)}
 .contact-link.copied{
   background:var(--primary-cyan);
+  color:#2d1b4e;
   animation:copypulse .45s ease;
 }
 @keyframes copypulse{
@@ -86,6 +101,28 @@ h2::before{
   50%{transform:scale(1.1)}
   100%{transform:scale(1)}
 }
+/* КНОПКА ПЕРЕКЛЮЧЕНИЯ ТЕМЫ */
+.theme-toggle{
+  position:fixed;
+  top:16px;
+  right:16px;
+  z-index:5;
+  width:46px;
+  height:46px;
+  border:3px solid var(--text-dark);
+  background:var(--btn-bg);
+  box-shadow:3px 3px 0 var(--primary-purple);
+  font-size:20px;
+  line-height:1;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:transform .15s,box-shadow .15s,background-color .3s;
+  padding:0;
+}
+.theme-toggle:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--primary-pink)}
+.theme-toggle:active{transform:translate(0,0);box-shadow:2px 2px 0 var(--primary-purple)}
 footer{text-align:center;padding:2rem;font-size:1.2rem;color:var(--primary-purple);margin-top:2rem}
 .cursor{display:inline-block;width:10px;height:1.2em;background:var(--primary-pink);animation:blink 1s step-end infinite;vertical-align:text-bottom}
 @keyframes blink{50%{opacity:0}}
@@ -95,10 +132,13 @@ footer{text-align:center;padding:2rem;font-size:1.2rem;color:var(--primary-purpl
   .game-strip{height:180px}
   .contacts{flex-direction:column;align-items:center}
   .skill-tag{font-size:.5rem}
+  .theme-toggle{top:10px;right:10px;width:40px;height:40px}
 }
 </style>
 </head>
 <body>
+
+<button id="theme-toggle" class="theme-toggle" type="button" aria-label="Переключить тему">🌙</button>
 
 <header>
   <div class="pixel-avatar">K</div>
@@ -259,7 +299,8 @@ const LEGS_JUMP = [
   "....................",
   "...................."
 ];
-const DINO_PAL = {'#':C.pink,'o':C.light,'p':C.dark};
+/* зрачок всегда тёмный, независимо от темы */
+const DINO_PAL = {'#':C.pink,'o':C.light,'p':'#2d1b4e'};
 
 const OBSTACLES = [
   { pal:{a:C.dark,d:C.purple,b:C.cyan,c:C.pink},
@@ -287,6 +328,11 @@ const OBSTACLES = [
         "dededededededede",
         "dddddddddddddddd"] }
 ];
+
+/* контуры препятствий: светлые в тёмной теме, тёмные в светлой */
+function setFrames(color){
+  for(const o of OBSTACLES){ o.pal.a = color; }
+}
 
 const CLOUD = ["..####..",".######.","########"];
 
@@ -324,18 +370,44 @@ function resize(){
 window.addEventListener('resize',resize);
 resize();
 
+/* ПЕРЕКЛЮЧЕНИЕ ТЕМЫ */
+(function(){
+  const btn = document.getElementById('theme-toggle');
+  const FRAME_DARK = '#2d1b4e';
+  const FRAME_LIGHT = '#f0e6ff';
+
+  function apply(dark){
+    document.body.classList.toggle('dark',dark);
+    btn.textContent = dark ? '☀️' : '🌙';
+    setFrames(dark ? FRAME_LIGHT : FRAME_DARK);
+    try{ localStorage.setItem('kamil-theme', dark?'dark':'light'); }catch(e){}
+  }
+
+  btn.addEventListener('click',function(){
+    apply(!document.body.classList.contains('dark'));
+  });
+
+  let saved = null;
+  try{ saved = localStorage.getItem('kamil-theme'); }catch(e){}
+  if(saved === 'dark'){
+    apply(true);
+  }else{
+    setFrames(FRAME_DARK);
+  }
+})();
+
 function jump(){ if(dino.grounded){dino.dy=dino.jump;dino.grounded=false;} }
 document.addEventListener('keydown',e=>{
   if(e.code==='Space'||e.code==='ArrowUp'){e.preventDefault();jump();}
 });
 document.addEventListener('mousedown',e=>{
   if(e.button!==0) return;
-  if(e.target.closest('a')) return;
+  if(e.target.closest('a,button')) return;
   if(window.getSelection) window.getSelection().removeAllRanges();
   jump();
 });
 document.addEventListener('touchstart',e=>{
-  if(e.target.closest('a'))return;
+  if(e.target.closest('a,button'))return;
   jump();
 },{passive:true});
 
